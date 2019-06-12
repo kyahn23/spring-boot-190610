@@ -1,9 +1,9 @@
-var app = (function () {
-    let init = function () {
+var app = (() => {
+    let init = () => {
         login_form()
     }
 
-    let login_form = function () {
+    let login_form = () => {
 
         let wrapper = document.querySelector('#wrapper');
         wrapper.innerHTML = '<form action="/action_page.php">'
@@ -20,12 +20,12 @@ var app = (function () {
 
         let btn = document.querySelector('#sign');
 
-        btn.addEventListener('click', function () {
+        btn.addEventListener('click', () => {
             signup_form();
         });
     }
 
-    let signup_form = function () {
+    let signup_form = () => {
         let wrapper = document.querySelector('#wrapper');
 
         wrapper.innerHTML = '<form action="/action_page.php">'
@@ -49,7 +49,7 @@ var app = (function () {
             + '</form>';
 
         let btn2 = document.querySelector("#signup");
-        btn2.addEventListener('click', function () {
+        btn2.addEventListener('click', () => {
             login_form();
         });
     }

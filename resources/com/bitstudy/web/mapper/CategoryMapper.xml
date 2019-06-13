@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bitstudy.web.mapper.CategoryMapper">
+
+    <insert id="insertCategory" parameterType="com.bitstudy.web.domain.CategoryDTO">
+        insert into CATEGORIES (CATEGORY_ID,CATEGORY_NAME,DESCRIPTION)
+        values (#{categoryId},#{categoryName},#{description})
+    </insert>
+
+    <select id="selectCategories" resultType="com.bitstudy.web.domain.CategoryDTO">
+       select * from CATEGORIES
+    </select>
+
+    <select id="selectCategoriesByOption" resultType="com.bitstudy.web.domain.CategoryDTO"
+                                            parameterType="com.bitstudy.web.domain.CategoryDTO">
+       select * from CATEGORIES where CATEGORY_NAME = #{categoryName}
+    </select>
+
+    <select id="selectCategoryByCategoryId" resultType="com.bitstudy.web.domain.CategoryDTO" parameterType="string">
+      select * from CATEGORIES where CATEGORY_ID = #{value}
+    </select>
+
+    <update id="updateCategory" parameterType="com.bitstudy.web.domain.CategoryDTO">
+        update CATEGORIES set
+            CATEGORY_NAME = #{categoryName},
+            DESCRIPTION = #{description}
+        where CATEGORY_ID = #{categoryId}
+    </update>
+
+    <delete id="deleteCategory" parameterType="com.bitstudy.web.domain.CategoryDTO">
+        delete from CATEGORIES where CATEGORY_ID = #{categoryId}
+    </delete>
+</mapper>

@@ -23,6 +23,9 @@ public interface CustomerService {
     public void updateCustomer(CustomerDTO customer);
     //D
     public void deleteCustomer(CustomerDTO customer);
+    public int countAll();
+    
+    public CustomerDTO login(CustomerDTO customer);
 
 
 }

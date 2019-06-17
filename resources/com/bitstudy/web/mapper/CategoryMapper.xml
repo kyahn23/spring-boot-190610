@@ -2,23 +2,30 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
 <mapper namespace="com.bitstudy.web.mapper.CategoryMapper">
+
+    <resultMap id="categoryMap" type="com.bitstudy.web.domain.CategoryDTO">
+        <id property="categoryId" column="CATEGORY_ID"/>
+        <id property="categoryName" column="CATEGORY_NAME"/>
+        <id property="description" column="DESCRIPTION"/>
+    </resultMap>
 
     <insert id="insertCategory" parameterType="com.bitstudy.web.domain.CategoryDTO">
         insert into CATEGORIES (CATEGORY_ID,CATEGORY_NAME,DESCRIPTION)
         values (#{categoryId},#{categoryName},#{description})
     </insert>
 
-    <select id="selectCategories" resultType="com.bitstudy.web.domain.CategoryDTO">
+    <select id="selectCategories" resultMap="categoryMap">
        select * from CATEGORIES
     </select>
 
-    <select id="selectCategoriesByOption" resultType="com.bitstudy.web.domain.CategoryDTO"
-                                            parameterType="com.bitstudy.web.domain.CategoryDTO">
+    <select id="selectCategoriesByOption" resultMap="categoryMap" parameterType="com.bitstudy.web.domain.CategoryDTO">
        select * from CATEGORIES where CATEGORY_NAME = #{categoryName}
     </select>
 
-    <select id="selectCategoryByCategoryId" resultType="com.bitstudy.web.domain.CategoryDTO" parameterType="string">
+    <select id="selectCategoryByCategoryId" resultMap="categoryMap" parameterType="string">
       select * from CATEGORIES where CATEGORY_ID = #{value}
     </select>
 

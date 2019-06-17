@@ -2,24 +2,35 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="com.bitstudy.web.mapper.SupplierMapper">
+
+  <resultMap id="supplierMap" type="com.bitstudy.web.domain.SupplierDTO">
+    <id property="supplierId" column="SUPPLIER_ID"/>
+    <id property="supplierName" column="SUPPLIER_NAME"/>
+    <id property="contactName" column="CONTACT_NAME"/>
+    <id property="address" column="ADDRESS"/>
+    <id property="city" column="CITY"/>
+    <id property="postalCode" column="POSTAL_CODE"/>
+    <id property="country" column="COUNTRY"/>
+    <id property="phone" column="PHONE"/>
+  </resultMap>
 
   <insert id="insertSupplier" parameterType="com.bitstudy.web.domain.SupplierDTO">
   insert into SUPPLIERS (SUPPLIER_ID,SUPPLIER_NAME,CONTACT_NAME,ADDRESS,CITY,POSTAL_CODE,COUNTRY,PHONE)
   values (#{supplierId},#{supplierName},#{contactName},#{address},#{city},#{postalCode},#{country},#{phone})
-</insert>
-  <select id="selectSuppliers" resultType="com.bitstudy.web.domain.SupplierDTO">
+  </insert>
+  <select id="selectSuppliers" resultMap="supplierMap">
     select * from SUPPLIERS
   </select>
-  <select id="selectSuppliersByOption" resultType="com.bitstudy.web.domain.SupplierDTO" 
-                                        parameterType="com.bitstudy.web.domain.SupplierDTO">
+  <select id="selectSuppliersByOption" resultMap="supplierMap" parameterType="com.bitstudy.web.domain.SupplierDTO">
     select * from SUPPLIERS where SUPPLIER_NAME = #{supplierName}
   </select>
-  <select id="selectSupplierBySupplierId" resultType="com.bitstudy.web.domain.SupplierDTO" parameterType="string">
+  <select id="selectSupplierBySupplierId" resultMap="supplierMap" parameterType="string">
     select * from SUPPLIERS where SUPPLIER_ID = #{value}
   </select>
 
-<update id="updateSupplier" parameterType="com.bitstudy.web.domain.SupplierDTO">
+  <update id="updateSupplier" parameterType="com.bitstudy.web.domain.SupplierDTO">
   update SUPPLIERS set
     SUPPLIER_NAME = #{supplierName},
     CONTACT_NAME = #{contactName},
@@ -29,9 +40,9 @@
     COUNTRY = #{country},
     PHONE = #{phone}
   where SUPPLIER_ID = #{supplierId}
-</update>
+  </update>
 
-<delete id="deleteSupplier" parameterType="com.bitstudy.web.domain.SupplierDTO">
+  <delete id="deleteSupplier" parameterType="com.bitstudy.web.domain.SupplierDTO">
   delete from SUPPLIERS SUPPLIER_ID = #{supplierId}
-</delete>
+  </delete>
 </mapper>

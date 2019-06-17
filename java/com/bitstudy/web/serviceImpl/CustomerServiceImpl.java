@@ -3,8 +3,10 @@ package com.bitstudy.web.serviceImpl;
 import java.util.List;
 
 import com.bitstudy.web.domain.CustomerDTO;
+import com.bitstudy.web.mapper.CustomerMapper;
 import com.bitstudy.web.service.CustomerService;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
+    @Autowired CustomerMapper customerMapper;
 
     @Override
     public void addCustomer(CustomerDTO customer) {
@@ -42,6 +45,19 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public void deleteCustomer(CustomerDTO customer) {
 
+    }
+
+    @Override
+    public int countAll() {
+        return customerMapper.selectCount();
+    }
+
+    @Override
+    public CustomerDTO login(CustomerDTO customer) {
+        System.out.println("컨트롤러에서 넘어온 id : "+customer.getCustomerId());
+        System.out.println("컨트롤러에서 넘어온 pass : "+customer.getPassword());
+
+        return customerMapper.login(customer);
     }
 
 }

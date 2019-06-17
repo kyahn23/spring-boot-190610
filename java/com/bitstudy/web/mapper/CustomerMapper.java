@@ -22,5 +22,9 @@ public CustomerDTO selectCustomerByCustomerId(String customerId);
 public void updateCustomer(CustomerDTO customer);
 // D
 public void deleteCustomer(CustomerDTO customer);
+public int selectCount();
+
+//로그인
+public CustomerDTO login(CustomerDTO customer);
     
 }

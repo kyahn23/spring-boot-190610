@@ -1,6 +1,5 @@
 package com.bitstudy.web;
 
-import java.io.IOException;
 
 import javax.sql.DataSource;
 
